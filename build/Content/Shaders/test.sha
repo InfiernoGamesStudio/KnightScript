@@ -1,0 +1,4 @@
+#vertex Vertex/test.vert
+#fragment Fragment/test.frag
+#geometry
+#uniform mat4 position
