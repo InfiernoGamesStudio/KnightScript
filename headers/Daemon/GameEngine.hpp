@@ -32,6 +32,7 @@
       std::string name;
       std::string author;
       std::string version;
+      std::string content_path;
 
       struct {
         int width;
@@ -40,6 +41,7 @@
       } screen;
 
       GLFWwindow* window;
+      struct GameContentManager content_manager;
 
     };
 

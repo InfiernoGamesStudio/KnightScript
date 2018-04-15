@@ -37,6 +37,8 @@
 
     };
 
+    void DestroyShader( struct GameShader* shader ) { };
+
   };
 
 #endif

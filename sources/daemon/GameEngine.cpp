@@ -1,5 +1,6 @@
 #include "../../headers/KnightScript.hpp"
 #include "../../headers/Daemon/Daemon.hpp"
+#include "../../headers/Daemon/GameContentManager.hpp"
 #include "../../headers/Daemon/GameEngine.hpp"
 #include "../../headers/Daemon/Utils/GLFW.inl"
 
@@ -19,7 +20,7 @@ struct Daemon::GameEngine* Daemon::CreateEngine( std::string config_file, struct
   if ( engine ) {
     std::ifstream loader = std::ifstream( config_file );
 
-    while ( !loader.eof( ) ) {
+    while ( true ) {
       loader >> config_file;
 
       if ( !loader.eof( ) ) {
@@ -36,8 +37,12 @@ struct Daemon::GameEngine* Daemon::CreateEngine( std::string config_file, struct
           loader >> engine->screen.width;
           loader >> engine->screen.height;
           engine->screen.ratio = (float)engine->screen.width / (float)engine->screen.height;
+        } else if ( config_file == "#content" ) {
+          getline( loader, config_file, '\n' );
+          engine->content_path = config_file.erase( 0, 1 );
         }
-      }
+      } else
+        break;
     }
 
     loader.close( );
@@ -67,15 +72,21 @@ void Daemon::InitEngine( struct Daemon::GameEngine* engine ) {
     printf( "[ ERROR ] Can't initialize GLEW !\n" );
     exit( -1 );
   }
+
+  Daemon::InitContentManager( engine );
 }
 
-void Daemon::AwakeEngine( struct Daemon::GameEngine* engine ) { }
+void Daemon::AwakeEngine( struct Daemon::GameEngine* engine ) {
+  Daemon::LoadContent( engine, Daemon::TEXTURE, "Textures/tileset.ttr" );
+  Daemon::LoadContent( engine, Daemon::MESH, "Meshes/plane.mesh" );
+}
 
 void Daemon::ProcessEngine( struct Daemon::GameEngine* engine ) {
 }
 
 void Daemon::DestroyEngine( struct Daemon::GameEngine* engine ) {
   if ( engine ) {
+    Daemon::ClearContentManager( engine );
     GLFW::Cleanup( engine->window );
     DELETE_PTR( engine )
   }

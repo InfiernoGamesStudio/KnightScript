@@ -32,8 +32,6 @@ int main( int argc, char** argv ) {
   Daemon::PrintInfo( engine );
 
   if ( engine ) {
-    struct Daemon::GameContentManager* content_manager = Daemon::CreateContentManager( );
-
     Daemon::InitEngine( engine );
     Daemon::AwakeEngine( engine );
 
@@ -47,8 +45,7 @@ int main( int argc, char** argv ) {
       glfwSwapBuffers( engine->window );
       glfwPollEvents( );
     }
-
-    Daemon::DestroyContentManager( content_manager );
+    
     Daemon::DestroyEngine( engine );
   } else {
     printf( "[ ERROR ] Can't setup the game engine !\n" );

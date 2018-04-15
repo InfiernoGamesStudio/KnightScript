@@ -34,6 +34,10 @@
 
     };
 
+    struct GameModel MakeModel( struct GameMesh* mesh ) { };
+
+    void DestroyModel( struct GameModel* model ) { };
+
   };
 
 #endif

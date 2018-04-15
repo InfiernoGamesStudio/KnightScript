@@ -25,16 +25,13 @@
 #ifndef _DAEMON_GAME_CONTENT_MANAGER_HPP_
 #define _DAEMON_GAME_CONTENT_MANAGER_HPP_
 
-  #include "../Pool.template"
+  #include "GameManager.hpp"
 
   namespace Daemon {
 
     enum EContentTypes {
 
-      TEXTURE_BMP,
-      TEXTURE_PNG,
-      TEXTURE_JPG,
-      TEXTURE_TGA,
+      TEXTURE,
       SHADER,
       MESH,
 
@@ -42,15 +39,29 @@
 
     struct GameContentManager {
 
-      float a;
+      unsigned int model_size;
+      GameManager< struct GameTexture > textures;
+      GameManager< struct GameShader > shaders;
+      GameManager< struct GameMesh > meshes;
+      std::vector< struct GameModel > models;
 
     };
 
-    struct Daemon::GameContentManager* CreateContentManager( struct GameContentManager* content_manager = nullptr );
+    void InitContentManager( struct GameEngine* engine );
 
-    bool LoadContent( struct GameContentManager* content_manager, enum EContentTypes type, std::string path );
+    void LoadTexture( struct GameContentManager* content_manager, std::string path );
 
-    void DestroyContentManager( struct GameContentManager* content_manager );
+    void LoadShader( struct GameContentManager* content_manager, std::string path );
+
+    void LoadMesh( struct GameContentManager* content_manager, std::string path );
+
+    bool LoadContent( struct GameEngine* engine, enum EContentTypes type, std::string path );
+
+    void GenerateModel( struct GameEngine* engine );
+
+    struct GameModel* FindModel( struct GameEngine* engine, unsigned int mesh );
+
+    void ClearContentManager( struct GameEngine* engine );
 
   };
 
