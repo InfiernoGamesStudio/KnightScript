@@ -57,7 +57,7 @@
           }
         };
 
-        unsigned int find( std::string key, unsigned int index = 0 ) {
+        unsigned int Find( std::string key, unsigned int index = 0 ) {
           while ( index < 0 ) {
             if ( this->keys[ index ] != key ) {
               index++;
@@ -70,18 +70,12 @@
           return 0;
         };
 
-        void push( std::string key, Type value ) {
+        Type* Push( std::string key ) {
           this->keys.push_back( key );
-          this->values.push_back( value );
+          this->values.push_back( Type( ) );
           this->size++;
-        };
 
-        void push( std::string key, Type* value ) {
-          if ( value ) {
-            this->keys.push_back( key );
-            this->values.push_back( MAKE_REF( value ) );
-            this->size++;
-          }
+          return MAKE_PTR( this->values[ this->size - 1 ] );
         };
 
         std::string* GetKey( unsigned int index ) {
@@ -93,6 +87,17 @@
           index--;
           return MAKE_PTR( this->values[ index ] );
         };
+
+        Type* Get( unsigned int index ) {
+          if ( index ) {
+            index--;
+
+            if ( index < this->size )
+              return MAKE_PTR( this->values[ index ] );
+          }
+
+          return nullptr;
+        }
 
     };
 

@@ -29,7 +29,7 @@
 
   namespace Daemon {
 
-    enum EContentTypes {
+    enum EAssetTypes {
 
       TEXTURE,
       SHADER,
@@ -39,7 +39,7 @@
 
     struct GameContentManager {
 
-      unsigned int model_size;
+      unsigned int model_count;
       GameManager< struct GameTexture > textures;
       GameManager< struct GameShader > shaders;
       GameManager< struct GameMesh > meshes;
@@ -55,11 +55,13 @@
 
     void LoadMesh( struct GameContentManager* content_manager, std::string path );
 
-    bool LoadContent( struct GameEngine* engine, enum EContentTypes type, std::string path );
+    bool LoadAsset( struct GameEngine* engine, enum EAssetTypes type, std::string path );
 
     void GenerateModel( struct GameEngine* engine );
 
     struct GameModel* FindModel( struct GameEngine* engine, unsigned int mesh );
+
+    void* GetAsset( struct GameEngine* engine, enum EAssetTypes type, unsigned int index );
 
     void ClearContentManager( struct GameEngine* engine );
 

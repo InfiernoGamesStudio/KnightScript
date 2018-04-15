@@ -28,8 +28,20 @@
 #include "../../headers/Daemon/GameEngine.hpp"
 
 int main( int argc, char** argv ) {
+  if ( argc < 2 ) {
+    printf( "[ ERROR ] No game to process !\n" );
+    return -1;
+  }
+
   struct Daemon::GameEngine* engine = Daemon::CreateEngine( argv[ 1 ] );
-  Daemon::PrintInfo( engine );
+
+  printf( "[ INFO ] Name : %s\n", engine->name.c_str( ) );
+  printf( "[ INFO ] Author : %s\n", engine->author.c_str( ) );
+  printf( "[ INFO ] Version : %s\n", engine->version.c_str( ) );
+  printf( "[ INFO ] Screen : \n" );
+  printf( "\t    Width : %d\n", engine->screen.width );
+  printf( "\t    Height : %d\n", engine->screen.height );
+  printf( "\t    Ratio : %f\n", engine->screen.ratio );
 
   if ( engine ) {
     Daemon::InitEngine( engine );
@@ -45,11 +57,11 @@ int main( int argc, char** argv ) {
       glfwSwapBuffers( engine->window );
       glfwPollEvents( );
     }
-    
+
     Daemon::DestroyEngine( engine );
   } else {
     printf( "[ ERROR ] Can't setup the game engine !\n" );
-    printf( "[ INFO ] Check the kfc file of the game !\n" );
+    printf( "[ INFO ] Check the kgc file of the game !\n" );
     printf( "[ INFO ] Path of the current kgc file : %s\n", argv[ 1 ] );
     return -1;
   }

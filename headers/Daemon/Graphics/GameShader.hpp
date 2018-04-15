@@ -33,11 +33,10 @@
       unsigned int fragment;
       unsigned int vertex;
       unsigned int geometry;
-      std::map< std::string, void* > uniforms;
 
     };
 
-    void DestroyShader( struct GameShader* shader ) { };
+    void DestroyShader( struct GameShader* shader );
 
   };
 

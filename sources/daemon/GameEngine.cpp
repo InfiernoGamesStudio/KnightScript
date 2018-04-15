@@ -4,16 +4,6 @@
 #include "../../headers/Daemon/GameEngine.hpp"
 #include "../../headers/Daemon/Utils/GLFW.inl"
 
-void Daemon::PrintInfo( struct Daemon::GameEngine* engine ) {
-  printf( "[ INFO ] Name : %s\n", engine->name.c_str( ) );
-  printf( "[ INFO ] Author : %s\n", engine->author.c_str( ) );
-  printf( "[ INFO ] Version : %s\n", engine->version.c_str( ) );
-  printf( "[ INFO ] Screen : \n" );
-  printf( "\t    Width : %d\n", engine->screen.width );
-  printf( "\t    Height : %d\n", engine->screen.height );
-  printf( "\t    Ratio : %f\n", engine->screen.ratio );
-}
-
 struct Daemon::GameEngine* Daemon::CreateEngine( std::string config_file, struct Daemon::GameEngine* engine ) {
   engine = ( struct Daemon::GameEngine* )malloc( sizeof( struct Daemon::GameEngine ) );
 
@@ -77,8 +67,10 @@ void Daemon::InitEngine( struct Daemon::GameEngine* engine ) {
 }
 
 void Daemon::AwakeEngine( struct Daemon::GameEngine* engine ) {
-  Daemon::LoadContent( engine, Daemon::TEXTURE, "Textures/tileset.ttr" );
-  Daemon::LoadContent( engine, Daemon::MESH, "Meshes/plane.mesh" );
+  Daemon::LoadAsset( engine, Daemon::TEXTURE, "Textures/tileset.ttr" );
+  Daemon::LoadAsset( engine, Daemon::MESH, "Meshes/plane.mesh" );
+
+  Daemon::GenerateModel( engine );
 }
 
 void Daemon::ProcessEngine( struct Daemon::GameEngine* engine ) {

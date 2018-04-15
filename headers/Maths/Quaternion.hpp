@@ -22,39 +22,12 @@
  * SOFTWARE.
  **/
 
-#ifndef _DAEMON_GAME_ENGINE_HPP_
-#define _DAEMON_GAME_ENGINE_HPP_
+#ifndef _MATHS_QUATERNION_HPP_
+#define _MATHS_QUATERNION_HPP_
 
-  namespace Daemon {
+  typedef float Quaternion[ 4 ];
 
-    struct GameEngine {
-
-      std::string name;
-      std::string author;
-      std::string version;
-      std::string content_path;
-
-      struct {
-        int width;
-        int height;
-        float ratio;
-      } screen;
-
-      GLFWwindow* window;
-      struct GameContentManager content_manager;
-
-    };
-
-    struct GameEngine* CreateEngine( std::string config_file, struct GameEngine* engine = nullptr );
-
-    void InitEngine( struct GameEngine* engine );
-
-    void AwakeEngine( struct GameEngine* engine );
-
-    void ProcessEngine( struct GameEngine* engine );
-
-    void DestroyEngine( struct GameEngine* engine );
-
+  namespace Quaternions {
   };
 
 #endif

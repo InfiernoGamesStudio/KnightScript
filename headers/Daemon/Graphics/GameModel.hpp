@@ -34,9 +34,9 @@
 
     };
 
-    struct GameModel MakeModel( struct GameMesh* mesh ) { };
+    struct GameModel MakeModel( struct GameMesh* mesh );
 
-    void DestroyModel( struct GameModel* model ) { };
+    void DestroyModel( struct GameModel* model );
 
   };
 

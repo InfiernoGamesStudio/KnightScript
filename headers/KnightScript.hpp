@@ -48,7 +48,7 @@
   #define MALLOC( type, name, offset ) name = ( type * )malloc( sizeof( type ) + offset )
   #define REALLOC( type, name, offset ) name = ( type * )realloc( name, sizeof( name ) + offset * sizeof( type ) );
   #define MAKE_PTR( ref ) &ref
-  #define MAKE_REF( ptr ) *ptr
+  #define MAKE_REF( ptr ) (*ptr)
   #define VALID_PTR( ptr ) ( ptr ) ? true : false
   #define IS( ptr, type ) dynamic_cast< type* >( ptr )
   #define CAST( ptr, type ) static_cast< type* >( ptr )

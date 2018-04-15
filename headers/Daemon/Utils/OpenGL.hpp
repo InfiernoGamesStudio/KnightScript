@@ -24,4 +24,13 @@
 
 #ifndef _DAEMON_OPENGL_HPP_
 #define _DAEMON_OPENGL_HPP_
+
+  namespace OpenGL {
+
+    void GenerateIndexBuffer( unsigned int vbo, unsigned int* data );
+
+    void GenerateDataBuffer( unsigned int vbo, int id, float* data, int stride, int size );
+
+  };
+
 #endif

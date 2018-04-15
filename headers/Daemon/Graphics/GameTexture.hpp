@@ -27,15 +27,6 @@
 
   namespace Daemon {
 
-    enum ETextureTypes {
-
-      BMP,
-      JPG,
-      PNG,
-      TGA
-      
-    };
-
     struct GameTexture {
 
       unsigned int diffuse;
@@ -45,7 +36,7 @@
 
     };
 
-    void DestroyTexture( struct GameTexture* texture ) { };
+    void DestroyTexture( struct GameTexture* texture );
 
   };
 

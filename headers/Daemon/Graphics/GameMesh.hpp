@@ -37,7 +37,7 @@
 
     };
 
-    void DestroyMesh( struct GameMesh* mesh ) { };
+    void DestroyMesh( struct GameMesh* mesh );
 
   };
 
