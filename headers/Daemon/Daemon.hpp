@@ -25,6 +25,12 @@
 #ifndef _DAEMON_HPP_
 #define _DAEMON_HPP_
 
+  extern "C" {
+    #include <stdarg.h>
+  };
+
+  #include <bitset>
+
   // Headers for OpenGL
   #define GLEW_STATIC
   #include <GL/glew.h>

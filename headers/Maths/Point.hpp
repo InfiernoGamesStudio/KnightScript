@@ -28,6 +28,27 @@
   typedef float Point[ 2 ];
 
   namespace Points {
+
+    void Add( Point target, Point source, float scalar );
+
+    void Add( Point target, Point one, Point two );
+
+    void Subtract( Point target, Point source, float scalar );
+
+    void Subtract( Point target, Point one, Point two );
+
+    void Multiply( Point target, Point source, float scalar );
+
+    void Multiply( Point target, Point one, Point two );
+
+    void Negate( Point target );
+
+    float Length( Point target );
+
+    void Normalize( Point target );
+
+    void Lerp( Point target, Point one, Point two, float alpha );
+
   };
 
 #endif

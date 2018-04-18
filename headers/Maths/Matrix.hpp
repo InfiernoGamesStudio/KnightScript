@@ -25,7 +25,32 @@
 #ifndef _MATHS_MATRIX_HPP_
 #define _MATHS_MATRIX_HPP_
 
+  typedef float Matrix[ 16 ];
+
   namespace Matrixs {
+
+    void ToIdentity( Matrix target );
+
+    void Add( Matrix target, Matrix one, Matrix two );
+
+    void Subtract( Matrix target, Matrix one, Matrix two );
+
+    void Multiply( Matrix target, Matrix one, Matrix two );
+
+    void Negate( Matrix target );
+
+    void RotateX( Matrix target, float angle );
+
+    void RotateY( Matrix target, float angle );
+
+    void RotateZ( Matrix target, float angle );
+
+    void Rotate( Matrix target, float rotation[ 3 ] );
+
+    void Scale( Matrix target, Matrix source, float scale[ 3 ] );
+
+    void Transform( Matrix target, float position[ 3 ] );
+
   };
 
 #endif

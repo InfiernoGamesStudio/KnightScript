@@ -2,4 +2,5 @@
 #author Infierno Games Studio
 #version a0.01
 #content Content/
+#scripts Scripts/
 #screen 1280 720

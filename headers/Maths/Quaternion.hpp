@@ -28,6 +28,33 @@
   typedef float Quaternion[ 4 ];
 
   namespace Quaternions {
+
+    void Add( Quaternion target, Quaternion source, float scalar );
+
+    void Add( Quaternion target, Quaternion source, float* value, bool is_point );
+
+    void Add( Quaternion target, Quaternion one, Quaternion two );
+
+    void Subtract( Quaternion target, Quaternion source, float scalar );
+
+    void Subtract( Quaternion target, Quaternion source, float* value, bool is_point );
+
+    void Subtract( Quaternion target, Quaternion one, Quaternion two );
+
+    void Multiply( Quaternion target, Quaternion source, float scalar );
+
+    void Multiply( Quaternion target, Quaternion one, Quaternion two );
+
+    void Negate( Quaternion target );
+
+    float Length( Quaternion target );
+
+    void Normalize( Quaternion target );
+
+    float Dot( Quaternion one, Quaternion two );
+
+    void Lerp( Quaternion target, Quaternion one, Quaternion two, float alpha );
+
   };
 
 #endif

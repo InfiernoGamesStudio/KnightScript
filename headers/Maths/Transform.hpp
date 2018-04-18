@@ -32,8 +32,16 @@
       float position[ 3 ];
       float rotation[ 3 ];
       float scale[ 3 ];
-      
+
     };
+
+    void SetPosition( struct Transform* transform, float value[ 3 ] );
+
+    void SetRotation( struct Transform* transform, float value[ 3 ] );
+
+    void SetScale( struct Transform* transform, float value[ 3 ] );
+
+    void SetTransform( struct Transform* transform, float position[ 3 ], float rotation[ 3 ], float scale[ 3 ] );
 
   };
 

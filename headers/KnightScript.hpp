@@ -29,15 +29,9 @@
   extern "C" {
     #include <stdlib.h>
     #include <stdio.h>
-    #include <stdarg.h>
   };
 
-  // Basic C++ headers
-  #include <bitset>
   #include <fstream>
-  #include <map>
-  #include <memory>
-  #include <sstream>
   #include <string>
   #include <vector>
 

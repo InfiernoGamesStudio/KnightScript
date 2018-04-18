@@ -28,6 +28,31 @@
   typedef float Vector[ 3 ];
 
   namespace Vectors {
+
+    void Add( Vector target, Vector source, float scalar );
+
+    void Add( Vector target, Vector source, float* value, bool is_point );
+
+    void Subtract( Vector target, Vector source, float scalar );
+
+    void Subtract( Vector target, Vector source, float* value, bool is_point );
+
+    void Multiply( Vector target, Vector source, float scalar );
+
+    void Multiply( Vector target, Vector one, Vector two );
+
+    void Negate( Vector target );
+
+    float Length( Vector target );
+
+    void Normalize( Vector target );
+
+    float Dot( Vector one, Vector two );
+
+    void Cross( Vector target, Vector one, Vector two );
+
+    void Lerp( Vector target, Vector one, Vector two, float alpha );
+
   };
 
 #endif
