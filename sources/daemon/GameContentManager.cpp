@@ -41,9 +41,12 @@ void Daemon::GenerateModel( struct Daemon::GameEngine* engine ) {
 
   while ( index < _cm->meshes.size ) {
     struct Daemon::GameMesh* mesh = _cm->meshes.GetValue( index );
-    struct Daemon::GameModel temp = Daemon::MakeModel( mesh );
-    _cm->models.push_back( temp );
-    _cm->model_count++;
+
+    if ( mesh ) {
+      struct Daemon::GameModel temp = Daemon::MakeModel( mesh );
+      _cm->models.push_back( temp );
+      _cm->model_count++;
+    }
 
     index++;
   }

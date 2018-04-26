@@ -30,6 +30,9 @@ struct Daemon::GameEngine* Daemon::CreateEngine( std::string config_file, struct
         } else if ( config_file == "#content" ) {
           getline( loader, config_file, '\n' );
           engine->content_path = config_file.erase( 0, 1 );
+        } else if ( config_file == "#script" ) {
+          getline( loader, config_file, '\n' );
+          engine->script_path = config_file.erase( 0, 1 );
         }
       } else
         break;

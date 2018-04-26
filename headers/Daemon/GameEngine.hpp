@@ -33,6 +33,7 @@
       std::string author;
       std::string version;
       std::string content_path;
+      std::string script_path;
 
       struct {
         int width;

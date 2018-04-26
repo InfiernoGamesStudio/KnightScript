@@ -31,10 +31,12 @@ void Matrixs::Subtract( Matrix target, Matrix one, Matrix two ) {
 }
 
 inline float Scalar( Matrix one, Matrix two, int column, int line ) {
+  column = column * 4;
+
   float val = one[ line ] * two[ column ];
-  val = one[ line ] * two[ column ] + val;
-  val = one[ line ] * two[ column ] + val;
-  val = one[ line ] * two[ column ] + val;
+  val = one[ line +  4 ] * two[ column + 1 ] + val;
+  val = one[ line +  8 ] * two[ column + 2 ] + val;
+  val = one[ line + 12 ] * two[ column + 3 ] + val;
 
   return val;
 }
@@ -102,10 +104,34 @@ void Matrixs::RotateZ( Matrix target, float angle ) {
 }
 
 void Matrixs::Rotate( Matrix target, float rotation[ 3 ] ) {
-  Matrix mx, my, mz;
-  Matrixs::RotateX( mx, rotation[ 0 ] );
-  Matrixs::RotateX( my, rotation[ 0 ] );
-  Matrixs::RotateX( mz, rotation[ 0 ] );
+  Matrixs::ToIdentity( target );
+
+  // calcul found at http://www.songho.ca/opengl/gl_anglestoaxes.html
+  target[  0 ] = cosf( rotation[ 2 ] ) * cosf( rotation[ 1 ] );
+  target[  1 ] = sinf( rotation[ 2 ] ) * cosf( rotation[ 1 ] );
+  target[  2 ] = -sinf( rotation[ 1 ] );
+  target[  6 ] = cosf( rotation[ 1 ] ) * sinf( rotation[ 0 ] );
+  target[ 10 ] = cosf( rotation[ 1 ] ) * cosf( rotation[ 0  ] );
+
+  float temp = cosf( rotation[ 2 ] ) * sinf( rotation[ 1 ] );
+  temp = temp * sinf( rotation[ 0 ] );
+  target[  4 ] = -sinf( rotation[ 2 ] ) * cosf( rotation[ 0 ] );
+  target[  4 ] = target[ 4 ] + temp;
+
+  temp = sinf( rotation[ 2 ] ) * sinf( rotation[ 1 ] );
+  temp = temp * sinf( rotation[ 0 ] );
+  target[  5 ] = cosf( rotation[ 2 ] ) * cosf( rotation[ 0 ] );
+  target[  5 ] = target[ 5 ] + temp;
+
+  temp = cosf( rotation[ 2 ] ) * sinf( rotation[ 1 ] );
+  temp = temp * cosf( rotation[ 0 ] );
+  target[  8 ] = sinf( rotation[ 2 ] ) * sinf( rotation[ 0 ] );
+  target[  8 ] = target[ 8 ] + temp;
+
+  temp = sinf( rotation[ 2 ] ) * sinf( rotation[ 1 ] );
+  temp = temp * cosf( rotation[ 0 ] );
+  target[  9 ] = -cosf( rotation[ 2 ] ) * sinf( rotation[ 0 ] );
+  target[  9 ] = target[ 9 ] + temp;
 }
 
 void Matrixs::Scale( Matrix target, Matrix source, float scale[ 3 ] ) {

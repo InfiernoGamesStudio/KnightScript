@@ -27,9 +27,11 @@
 
   namespace OpenGL {
 
-    void GenerateIndexBuffer( unsigned int vbo, unsigned int* data );
+    void GenerateIndexBuffer( unsigned int vbo, unsigned int* data, unsigned int size );
 
     void GenerateDataBuffer( unsigned int vbo, int id, float* data, int stride, int size );
+
+    void GenerateDataBuffer( unsigned int vbo, int id, int* data, int stride, int size );
 
   };
 

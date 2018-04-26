@@ -25,7 +25,8 @@
 #ifndef _DAEMON_GAME_MANAGER_HPP_
 #define _DAEMON_GAME_MANAGER_HPP_
 
-  #include "../KnightScript.hpp"
+  #include <vector>
+  #include <string>
 
   namespace Daemon {
 
@@ -52,7 +53,10 @@
           if ( this->destroy ) {
             while ( this->size > 0 ) {
               this->size--;
-              this->destroy( MAKE_PTR( this->values[ this->size ] ) );
+              Type* temp = MAKE_PTR( this->values[ this->size ] );
+
+              if ( temp )
+                this->destroy( temp );
             }
           }
         };
@@ -73,31 +77,37 @@
         Type* Push( std::string key ) {
           this->keys.push_back( key );
           this->values.push_back( Type( ) );
-          this->size++;
 
-          return MAKE_PTR( this->values[ this->size - 1 ] );
+          return MAKE_PTR( this->values[ this->size++ ] );
         };
 
         std::string* GetKey( unsigned int index ) {
-          index--;
           return MAKE_PTR( this->keys[ index ] );
         };
 
         Type* GetValue( unsigned int index ) {
-          index--;
           return MAKE_PTR( this->values[ index ] );
         };
 
-        Type* Get( unsigned int index ) {
-          if ( index ) {
-            index--;
+        Type* GetValue( std::string key ) {
+          unsigned int index = 0;
 
-            if ( index < this->size )
+          while ( index < this->size ) {
+            if ( this->keys[ index ] != key )
+              index++;
+            else
               return MAKE_PTR( this->values[ index ] );
           }
 
           return nullptr;
-        }
+        };
+
+        Type* Get( unsigned int index ) {
+          if ( index && index < this->size )
+            return MAKE_PTR( this->values[ index ] );
+
+          return nullptr;
+        };
 
     };
 

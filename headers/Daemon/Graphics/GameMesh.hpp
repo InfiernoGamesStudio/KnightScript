@@ -25,8 +25,6 @@
 #ifndef _DAEMON_GAME_MESH_HPP_
 #define _DAEMON_GAME_MESH_HPP_
 
-  #define INIT_MESH { 0, nullptr, nullptr }
-
   namespace Daemon {
 
     struct GameMesh {

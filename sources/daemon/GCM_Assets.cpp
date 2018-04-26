@@ -20,15 +20,13 @@ void Daemon::DestroyMesh( struct Daemon::GameMesh* mesh ) {
 struct Daemon::GameModel Daemon::MakeModel( struct Daemon::GameMesh* mesh ) {
   struct Daemon::GameModel model;
 
-  if ( mesh ) {
-    glGenVertexArrays( 1, MAKE_PTR( model.vao ) );
-    glGenBuffers( 4, model.vbo );
+  glGenVertexArrays( 1, MAKE_PTR( model.vao ) );
+  glGenBuffers( 4, model.vbo );
 
-    OpenGL::GenerateIndexBuffer( model.vbo[ 0 ], mesh->indexes );
-    OpenGL::GenerateDataBuffer( model.vbo[ 1 ], 0, mesh->vertices, 0, 3 );
-    OpenGL::GenerateDataBuffer( model.vbo[ 2 ], 1, mesh->vertices, 3, 3 );
-    OpenGL::GenerateDataBuffer( model.vbo[ 3 ], 2, mesh->vertices, 6, 2 );
-  }
+  OpenGL::GenerateIndexBuffer( model.vbo[ 0 ], mesh->indexes, mesh->vertex_count );
+  OpenGL::GenerateDataBuffer( model.vbo[ 1 ], 0, mesh->vertices, 0, 3 );
+  OpenGL::GenerateDataBuffer( model.vbo[ 2 ], 1, mesh->vertices, 3, 3 );
+  OpenGL::GenerateDataBuffer( model.vbo[ 3 ], 2, mesh->vertices, 6, 2 );
 
   return model;
 }
